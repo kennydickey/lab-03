@@ -1,24 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@tylersayvetz 
-tylersayvetz
-/
-seattle-301d55
-forked from codefellows/seattle-301d55
-1
-014
- Code Pull requests 0 Actions Projects 0 Wiki Security Insights Settings
-seattle-301d55/class-02/lab/starter-code/page-1.json
-@johncokos johncokos Initial Repo Setup for 301d55
-f987ab7 9 days ago
-142 lines (142 sloc)  5.78 KB
-  
 [
   {
     "image_url": "http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg",
@@ -160,16 +139,4 @@ f987ab7 9 days ago
     "keyword": "dragon",
     "horns": 100
   }
-]
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
