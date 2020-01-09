@@ -1,9 +1,5 @@
 $(document).ready(() => {
 
-  console.log('hello');
-
-
-
   function PrintImg(image) {
     this.url = image.image_url;
     this.title = image.title;
@@ -21,17 +17,27 @@ $(document).ready(() => {
     $newSection.find('h2').text(this.title);
     $newSection.find('img').attr('src', this.url).css({ 'width': '400px' });
     $newSection.find('p').text(this.description);
+    $newSection.find('#horns').text(this.horns);
+
 
     //put onto the doc
     $('main').append($newSection);
 
   }
 
-  const createMenu = (optionsArr) => {
+  const createFilterMenu = (optionsArr) => {
     optionsArr.forEach(option => { //for every element on menuOptions, ...
       const $option = $(`<option>${option}</option>`); // create a new option HTML element.
       // $option.text(option); // put the word onto the <option>
-      $('select').append($option); //put the <option> into the <select>
+      $('#filter').append($option); //put the <option> into the <select>
+    })
+  }
+
+  const createSortMenu = () => {
+    const options = ['Number of Horns', 'Title'];
+    options.forEach(option => {
+      const newOption = $(`<option>${option}</option>`);
+      $('#sort-by').append(newOption);
     })
   }
 
@@ -42,7 +48,6 @@ $(document).ready(() => {
     let filteredArray = [];
     if (selection !== 'default') {
       filteredArray = data.filter(animal => animal.keyword === selection);
-      console.log(filteredArray);
     } else {
       filteredArray = data;
     }
@@ -57,9 +62,9 @@ $(document).ready(() => {
 
   const clearAnimalsAndMenu = () => { //clear
     $('section').not('#photo-template').html(''); //select the section, 
-    $('select').empty(); //empty the select menu
-    const $newDefaultOption = $(`<option value="default" id="default">Filter by Keyword</option>`);  //create new variable which has default option text
-    $('select').append($newDefaultOption);//append the select menu with the new variable.
+    $('#filter').empty(); //empty the select menu
+    const $newDefaultOption = $(`<option value="default" id="filter">Filter by Keyword</option>`);  //create new variable which has default option text
+    $('#filter').append($newDefaultOption);//append the select menu with the new variable.
   }
 
   const clearAnimals = () => {
@@ -83,6 +88,8 @@ $(document).ready(() => {
     }
   })
 
+
+
   function loadPage(jsonPath) {
     $.ajax(jsonPath, { method: 'GET', dataType: 'JSON' })
       .then((data) => {
@@ -96,20 +103,29 @@ $(document).ready(() => {
 
         //select all <option>s, and when they are clicked, return its text.
 
-        createMenu(menuOptions);
+        createFilterMenu(menuOptions);
+        createSortMenu();
         renderAnimals(data, 'default');
 
-
-        $('select').on('change', function () {  //runs when 
-          console.log($(this).val());
+        //on change of #filter, send data and filter param to render function.
+        $('#filter').on('change', function () {
           clearAnimals();
           renderAnimals(data, $(this).val());
         })
 
-
+        //sort the data and render.
+        $('#sort-by').on('change', function () {
+          if ($(this).val() === 'Number of Horns') {
+            data.sort((a, b) => a.horns - b.horns);
+          } else if ($(this).val() === 'Title') {
+            data.sort((a, b) => a.title < b.title ? -1 : 1);
+          }
+          clearAnimals();
+          //render animals using current filter param
+          renderAnimals(data, $('#filter').val());
+        })
       })
   }
 
   loadPage(pages[0]);
-
 })
