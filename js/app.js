@@ -29,18 +29,23 @@ $(document).ready(() => {
 
     const createMenu = (optionsArr) => {
         optionsArr.forEach(option => { //for every element on menuOptions, ...
-            const $option = $('<option></option>'); // create a new option HTML element.
-            $option.text(option); // put the word onto the <option>
+            const $option = $(`<option>${option}</option>`); // create a new option HTML element.
+            // $option.text(option); // put the word onto the <option>
             $('select').append($option); //put the <option> into the <select>
         })
     }
 
 
-    const renderAnimals = (data, menuOptions) => {
+
+    const renderAnimals = (data, selection) => {
         //filter the animals array to be only the ones that match "rhino" keyword.
-        let filteredArray = data.filter(animal => animal.keyword === 'rhino');
-        console.log(filteredArray);
-        createMenu(menuOptions);
+        let filteredArray = [];
+        if (selection !== "default") {
+            filteredArray = data.filter(animal => animal.keyword === selection);
+            console.log(filteredArray);
+        } else {
+            filteredArray = data;
+        }
 
         //for each animal on the filtered array of animals, run it through the constructor, assign that to UNIT, then render the unit.
         filteredArray.forEach(animal => {
@@ -48,6 +53,13 @@ $(document).ready(() => {
             unit.render();
         })
     }
+
+
+    const clearAnimals = () => {
+        $('section').not("#photo-template").html('');
+    }
+
+
 
     $.ajax('./data/page-1.json', { method: "GET", dataType: "JSON" })
         .then((data) => {
@@ -57,19 +69,22 @@ $(document).ready(() => {
             data.forEach((animal) => {
                 const unit = new PrintImg(animal);
                 if (!menuOptions.includes(unit.keyword)) { menuOptions.push(unit.keyword) }
-                
             })
 
             //select all <option>s, and when they are clicked, return its text.
-            console.log( $('option').on('click', () => {
-                return $(this).text();
-            }) 
-            );
 
-            renderAnimals(data, menuOptions);
-            
+            createMenu(menuOptions);
+            renderAnimals(data, "default");
+
+
+            $('select').on('change', function () {
+                console.log($(this).val());
+                clearAnimals();
+                renderAnimals(data, $(this).val());
+            })
 
 
         })
+
 
 })
