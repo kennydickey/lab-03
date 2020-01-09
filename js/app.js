@@ -36,6 +36,7 @@ $(document).ready(() => {
     }
 
 
+
     const renderAnimals = (data, selection) => {
         //filter the animals array to be only the ones that match "rhino" keyword.
         let filteredArray = [];
@@ -53,9 +54,11 @@ $(document).ready(() => {
         })
     }
 
+
     const clearAnimals = () => {
         $('section').not("#photo-template").html('');
     }
+
 
 
     $.ajax('./data/page-1.json', { method: "GET", dataType: "JSON" })
@@ -82,8 +85,6 @@ $(document).ready(() => {
 
 
         })
-
-
 
 
 })
