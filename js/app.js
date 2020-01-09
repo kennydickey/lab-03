@@ -15,7 +15,7 @@ $(document).ready(() => {
 
     $newSection.html(template);
     $newSection.find('h2').text(this.title);
-    $newSection.find('img').attr('src', this.url).css({ 'width': '400px' });
+    $newSection.find('img').attr('src', this.url);
     $newSection.find('p').text(this.description);
     $newSection.find('#horns').text(this.horns);
 
@@ -44,7 +44,7 @@ $(document).ready(() => {
 
 
   const renderAnimals = (data, selection) => {
-    //filter the animals array to be only the ones that match 'rhino' keyword.
+    //filter the animals array to be only the ones that 'rhino' keyword.
     let filteredArray = [];
     if (selection !== 'default') {
       filteredArray = data.filter(animal => animal.keyword === selection);
@@ -61,18 +61,18 @@ $(document).ready(() => {
 
 
   const clearAnimalsAndMenu = () => { //clear
-    $('section').not('#photo-template').html(''); //select the section, 
+    $('main').empty();
     $('#filter').empty(); //empty the select menu
     const $newDefaultOption = $(`<option value="default" id="filter">Filter by Keyword</option>`);  //create new variable which has default option text
     $('#filter').append($newDefaultOption);//append the select menu with the new variable.
   }
 
   const clearAnimals = () => {
-    $('section').not('#photo-template').html('');
+    $('main').empty();
   }
 
   const pages = ['./data/page-1.json', './data/page-2.json']; //here is a list of available pages
-  let currentPage = ''; //this is going to store (tell the computer) which page it is on.
+  let currentPage = pages[0]; //this is going to store (tell the computer) which page it is on.
 
 
   //when page toggle clicked...

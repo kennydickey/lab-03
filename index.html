@@ -3,6 +3,10 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="css/layouts.css"/>
+        <link rel="stylesheet" type="text/css" href="css/modules.css"/>
     <title>The Gallery of Horns</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,6 +17,7 @@
         <select id="filter">
             <option value="default" >Filter by Keyword</option>
         </select>
+        
         <select id="sort-by">
             <option value="default" id="sort">Sort By...</option>
         </select>
@@ -22,15 +27,16 @@
             </button>
         </nav>
     </header>
+    <section id="photo-template" style="display: none;">
+        <h2></h2>
+        <img src="" alt="">
+        <p>
+        </p>
+        <p id="horns">
+        </p>
+    </section>
     <main>
-        <section id="photo-template">
-            <h2></h2>
-            <img src="" alt="">
-            <p>
-            </p>
-            <p id="horns">
-            </p>
-        </section>
+        
         
     </main>
     <footer>
