@@ -1,6 +1,7 @@
 section {
   margin: 15px;
-  width: 200px;
+  width: 250px;
+  height: 300px;
 }
 
 section img {
@@ -8,7 +9,7 @@ section img {
 }
 
 header {
-  background-color: rgb(216, 216, 216);
+  background-color: rgb(231, 231, 231);
   width: 100%;
   display: flex;
   justify-content: space-around;

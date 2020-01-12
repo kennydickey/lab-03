@@ -1,6 +1,6 @@
 header {
   display: block;
-  height: 80px;
+  height: 150px;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
 }
 
 main {
-  margin-top: 100px;
+  margin-top: 180px;
   background-color: aquamarine;
   width: 80%;
   display: flex;
